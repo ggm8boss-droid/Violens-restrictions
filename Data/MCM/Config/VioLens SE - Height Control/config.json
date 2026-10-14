@@ -1,0 +1,319 @@
+{
+  "modName": "VioLens SE - Height Control",
+  "displayName": "VioLens Height",
+  "minMcmVersion": 9,
+  "cursorFillMode": "topToBottom",
+  "pages": [
+    {
+      "pageDisplayName": "Killmove Conditions",
+      "cursorFillMode": "topToBottom",
+      "content": [
+        {
+          "text": "Height Difference",
+          "type": "header"
+        },
+        {
+          "text": "Enable height check",
+          "type": "toggle",
+          "help": "When on, VioLens killmoves only trigger if the height difference between you and your target is inside the range below. When off, height is ignored completely.",
+          "valueOptions": {
+            "sourceType": "GlobalValue",
+            "sourceForm": "VioLens SE - Height Control.esp|800"
+          }
+        },
+        {
+          "text": "Lower limit",
+          "type": "slider",
+          "help": "Lowest allowed height difference (target minus you; negative = target below you). VioLens default: -35. Roughly 70 units = 1 meter.",
+          "valueOptions": {
+            "min": -500,
+            "max": 0,
+            "step": 5,
+            "formatString": "{0}",
+            "sourceType": "GlobalValue",
+            "sourceForm": "VioLens SE - Height Control.esp|801"
+          }
+        },
+        {
+          "text": "Upper limit",
+          "type": "slider",
+          "help": "Highest allowed height difference (target minus you; positive = target above you). VioLens default: 35. Roughly 70 units = 1 meter.",
+          "valueOptions": {
+            "min": 0,
+            "max": 500,
+            "step": 5,
+            "formatString": "{0}",
+            "sourceType": "GlobalValue",
+            "sourceForm": "VioLens SE - Height Control.esp|802"
+          }
+        },
+        {
+          "text": "Defaults: on, -35, 35. Also applies to the suplex.",
+          "type": "text"
+        },
+        {
+          "type": "empty"
+        },
+        {
+          "text": "Blocking Enemies",
+          "type": "header"
+        },
+        {
+          "text": "Ignore block",
+          "type": "toggle",
+          "help": "A blocked hit never counts as lethal, so blocking enemies normally can't be killmoved. When on, a blocking enemy can be killmoved by you once their health is at or below the limit below.",
+          "valueOptions": {
+            "sourceType": "GlobalValue",
+            "sourceForm": "VioLens SE - Height Control.esp|804"
+          }
+        },
+        {
+          "text": "Blocking: health limit",
+          "type": "slider",
+          "help": "Blocking enemies at or below this fraction of their health can be killmoved (0.25 = 25%).",
+          "valueOptions": {
+            "min": 0.05,
+            "max": 1.0,
+            "step": 0.05,
+            "formatString": "{2}",
+            "sourceType": "GlobalValue",
+            "sourceForm": "VioLens SE - Height Control.esp|805"
+          }
+        },
+        {
+          "type": "empty"
+        },
+        {
+          "text": "Low Health Finisher",
+          "type": "header"
+        },
+        {
+          "text": "Killmove at low health",
+          "type": "toggle",
+          "help": "Normally a killmove only happens when your hit would kill. When on, YOUR attacks can killmove an enemy whose health is at or below the limit, even if the hit itself wouldn't kill. NPC attackers are not affected.",
+          "valueOptions": {
+            "sourceType": "GlobalValue",
+            "sourceForm": "VioLens SE - Height Control.esp|80E"
+          }
+        },
+        {
+          "text": "Low health limit",
+          "type": "slider",
+          "help": "Enemies at or below this fraction of their health can be finished with a killmove (0.20 = 20%).",
+          "valueOptions": {
+            "min": 0.05,
+            "max": 1.0,
+            "step": 0.05,
+            "formatString": "{2}",
+            "sourceType": "GlobalValue",
+            "sourceForm": "VioLens SE - Height Control.esp|80F"
+          }
+        },
+        {
+          "type": "empty"
+        },
+        {
+          "text": "Attack Angle",
+          "type": "header"
+        },
+        {
+          "text": "Front arc start",
+          "type": "slider",
+          "help": "VioLens picks front killmoves when the angle between you and the enemy is between this value and 'Front arc end'. 180 = facing each other. VioLens default 90; lower = enemy can be turned further away and still get a front killmove. 0 = any angle. Not used while sneaking (stealth kills keep VioLens' 90).",
+          "valueOptions": {
+            "min": 0,
+            "max": 180,
+            "step": 5,
+            "formatString": "{0}",
+            "sourceType": "GlobalValue",
+            "sourceForm": "VioLens SE - Height Control.esp|80B"
+          }
+        },
+        {
+          "text": "Front arc end",
+          "type": "slider",
+          "help": "Upper edge of the front arc. VioLens default 270; higher = wider. 360 = any angle. Not used while sneaking.",
+          "valueOptions": {
+            "min": 180,
+            "max": 360,
+            "step": 5,
+            "formatString": "{0}",
+            "sourceType": "GlobalValue",
+            "sourceForm": "VioLens SE - Height Control.esp|80C"
+          }
+        },
+        {
+          "text": "Creatures: any angle",
+          "type": "toggle",
+          "help": "Creatures have no back killmoves, so VioLens skips them when you hit from behind or the side. When on, creatures get front killmoves from any angle.",
+          "valueOptions": {
+            "sourceType": "GlobalValue",
+            "sourceForm": "VioLens SE - Height Control.esp|80D"
+          }
+        },
+        {
+          "text": "Defaults: 30 / 330 / on (VioLens: 90 / 270).",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "pageDisplayName": "Target States",
+      "cursorFillMode": "topToBottom",
+      "content": [
+        {
+          "text": "Targets VioLens normally skips",
+          "type": "header"
+        },
+        {
+          "text": "Allow sleeping / lying targets",
+          "type": "toggle",
+          "help": "Allow killmoves on NPCs lying in a bed or bedroll. Sneak up behind them for stealth kills.",
+          "valueOptions": {
+            "sourceType": "GlobalValue",
+            "sourceForm": "VioLens SE - Height Control.esp|806"
+          }
+        },
+        {
+          "text": "Allow paralyzed targets",
+          "type": "toggle",
+          "help": "Allow killmoves on paralyzed targets. They are ragdolled, so the animation may snap or look odd.",
+          "valueOptions": {
+            "sourceType": "GlobalValue",
+            "sourceForm": "VioLens SE - Height Control.esp|807"
+          }
+        },
+        {
+          "text": "Allow targets on furniture",
+          "type": "toggle",
+          "help": "Allow normal killmoves on NPCs sitting or leaning on furniture (chairs, benches, walls). May look odd.",
+          "valueOptions": {
+            "sourceType": "GlobalValue",
+            "sourceForm": "VioLens SE - Height Control.esp|808"
+          }
+        },
+        {
+          "text": "Stealth kills on seated targets",
+          "type": "toggle",
+          "help": "VioLens setting: allow stealth killmoves on seated NPCs.",
+          "valueOptions": {
+            "sourceType": "GlobalValue",
+            "sourceForm": "VioLens SE.esp|149F97"
+          }
+        },
+        {
+          "text": "Two-handed stealth killmove",
+          "type": "enum",
+          "help": "VioLens has no stealth killmoves for greatswords, battleaxes and warhammers. This adds them using the same animations as the sword option. Off = no two-handed stealth killmoves.",
+          "valueOptions": {
+            "options": [
+              "Off",
+              "Throat Slit",
+              "Neck Break",
+              "Sleeper Hold",
+              "Throat Slit / Neck Break",
+              "Throat Slit / Sleeper",
+              "Neck Break / Sleeper",
+              "All three (random)"
+            ],
+            "sourceType": "GlobalValue",
+            "sourceForm": "VioLens SE - Height Control.esp|83F"
+          }
+        },
+        {
+          "type": "empty"
+        },
+        {
+          "text": "Attacker State",
+          "type": "header"
+        },
+        {
+          "text": "Allow killmoves while staggered",
+          "type": "toggle",
+          "help": "VioLens blocks killmoves when the attacker is staggered (e.g. just got hit). When on, a staggered attacker can still start a killmove.",
+          "valueOptions": {
+            "sourceType": "GlobalValue",
+            "sourceForm": "VioLens SE - Height Control.esp|810"
+          }
+        }
+      ]
+    },
+    {
+      "pageDisplayName": "VioLens Settings",
+      "cursorFillMode": "topToBottom",
+      "content": [
+        {
+          "text": "Activation",
+          "type": "header"
+        },
+        {
+          "text": "Last enemy only",
+          "type": "toggle",
+          "help": "VioLens setting (default ON): you only get normal killmoves on the last enemy still fighting. Turn OFF to allow killmoves on any enemy.",
+          "valueOptions": {
+            "sourceType": "GlobalValue",
+            "sourceForm": "VioLens SE.esp|AA03"
+          }
+        },
+        {
+          "text": "Advancing killmoves",
+          "type": "enum",
+          "help": "VioLens setting: killmoves where you step toward the enemy. Off = never (VioLens default). Last enemy = only on the last enemy. On = always. Adds many more animations.",
+          "valueOptions": {
+            "options": [
+              "Off",
+              "Last enemy",
+              "On"
+            ],
+            "sourceType": "GlobalValue",
+            "sourceForm": "VioLens SE.esp|893C1"
+          }
+        },
+        {
+          "text": "Killmove chance (%)",
+          "type": "slider",
+          "help": "VioLens setting: chance that a lethal hit becomes a killmove.",
+          "valueOptions": {
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "formatString": "{0}",
+            "sourceType": "GlobalValue",
+            "sourceForm": "VioLens SE.esp|FB0A"
+          }
+        },
+        {
+          "text": "Stealth killmove chance (%)",
+          "type": "slider",
+          "help": "VioLens setting: chance that a lethal sneak attack becomes a stealth killmove.",
+          "valueOptions": {
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "formatString": "{0}",
+            "sourceType": "GlobalValue",
+            "sourceForm": "VioLens SE.esp|149F96"
+          }
+        },
+        {
+          "text": "Player immune to NPC killmoves",
+          "type": "toggle",
+          "help": "VioLens setting: when on, NPCs can't killmove you.",
+          "valueOptions": {
+            "sourceType": "GlobalValue",
+            "sourceForm": "VioLens SE.esp|AA04"
+          }
+        },
+        {
+          "text": "Killmoves enabled (game)",
+          "type": "toggle",
+          "help": "Vanilla master switch for all killmoves. Keep ON.",
+          "valueOptions": {
+            "sourceType": "GlobalValue",
+            "sourceForm": "Skyrim.esm|100F19"
+          }
+        }
+      ]
+    }
+  ]
+}
